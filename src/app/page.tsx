@@ -5,15 +5,15 @@ const appUrl = process.env.NEXT_PUBLIC_URL;
 
 const frame = {
   version: "next",
-  imageUrl: `${appUrl}/opengraph-image`,
+  imageUrl: `${appUrl}/og-image`,
   button: {
     title: "Blepblopia Translator",
     action: {
       type: "launch_frame",
       name: "translate",
       url: appUrl,
-      splashImageUrl: `${appUrl}/splash.png`,
-      splashBackgroundColor: "#f7f7f7",
+      splashImageUrl: `${appUrl}/splas.png`,
+      splashBackgroundColor: "#a1a1ff",
     },
   },
 };
