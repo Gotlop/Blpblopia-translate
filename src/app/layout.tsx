@@ -1,26 +1,21 @@
-import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
 
-import { getSession } from "~/auth"
-import "~/app/globals.css";
-import { Providers } from "~/app/providers";
+const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "Blepblopia Translator",
   description: "Translate your text into Blepblopia language",
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
-  const session = await getSession()
-  
+}) {
   return (
     <html lang="en">
-      <body>
-        <Providers session={session}>{children}</Providers>
-      </body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }
