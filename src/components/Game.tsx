@@ -31,7 +31,7 @@ export default function Game(
 
   return (
     <div className="container" style={{ padding: "20px", maxWidth: "600px", margin: "0 auto" }}>
-      <h1>{title}</h1>
+      <h1>{title}Blepblopia</h1>
       <div id="blepblopia">Loading...</div>
     </div>
   );
