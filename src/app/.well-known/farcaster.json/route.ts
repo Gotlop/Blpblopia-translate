@@ -11,13 +11,13 @@ export async function GET() {
     },
     frame: {
       version: "1",
-      name: "Frames v2 Demo",
+      name: "Blepblopia Translator",
       iconUrl: `${appUrl}/icon.png`,
       homeUrl: appUrl,
-      imageUrl: `${appUrl}/frames/hello/opengraph-image`,
-      buttonTitle: "Launch Frame",
+      imageUrl: `${appUrl}/og-image.png`,
+      buttonTitle: "Translatee",
       splashImageUrl: `${appUrl}/splash.png`,
-      splashBackgroundColor: "#f7f7f7",
+      splashBackgroundColor: "#a1a1ff",
       webhookUrl: `${appUrl}/api/webhook`,
     },
   };
