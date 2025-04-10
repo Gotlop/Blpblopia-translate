@@ -1,13 +1,6 @@
-"use client";
-
 import { Metadata } from "next";
 import App from "./app";
 
-import Game from "../components/Game";
-
-export default function Page() {
-  return <Game />;
-}
 const appUrl = process.env.NEXT_PUBLIC_URL;
 
 const frame = {
