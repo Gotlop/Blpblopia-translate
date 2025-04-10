@@ -1,4 +1,4 @@
-import { AuthOptions, getServerSession } from "next-auth"
+import { AuthOptions, getServerSession } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { createAppClient, viemConnector } from "@farcaster/auth-client";
 
@@ -11,34 +11,14 @@ declare module "next-auth" {
 }
 
 export const authOptions: AuthOptions = {
-    // Configure one or more authentication providers
   providers: [
     CredentialsProvider({
       name: "Sign in with Farcaster",
       credentials: {
-        message: {
-          label: "Message",
-          type: "text",
-          placeholder: "0x0",
-        },
-        signature: {
-          label: "Signature",
-          type: "text",
-          placeholder: "0x0",
-        },
-        // In a production app with a server, these should be fetched from
-        // your Farcaster data indexer rather than have them accepted as part
-        // of credentials.
-        name: {
-          label: "Name",
-          type: "text",
-          placeholder: "0x0",
-        },
-        pfp: {
-          label: "Pfp",
-          type: "text",
-          placeholder: "0x0",
-        },
+        message: { label: "Message", type: "text", placeholder: "0x0" },
+        signature: { label: "Signature", type: "text", placeholder: "0x0" },
+        name: { label: "Name", type: "text", placeholder: "0x0" },
+        pfp: { label: "Pfp", type: "text", placeholder: "0x0" },
       },
       async authorize(credentials, req) {
         const csrfToken = req?.body?.csrfToken;
@@ -46,10 +26,14 @@ export const authOptions: AuthOptions = {
           ethereum: viemConnector(),
         });
 
+        const domain = process.env.NEXTAUTH_URL
+          ? new URL(process.env.NEXTAUTH_URL).hostname
+          : "localhost";
+
         const verifyResponse = await appClient.verifySignInMessage({
           message: credentials?.message as string,
           signature: credentials?.signature as `0x${string}`,
-          domain: new URL(process.env.NEXTAUTH_URL ?? '').hostname,
+          domain,
           nonce: csrfToken,
         });
         const { success, fid } = verifyResponse;
@@ -71,7 +55,7 @@ export const authOptions: AuthOptions = {
       }
       return session;
     },
-  }
-}
+  },
+};
 
-export const getSession = () => getServerSession(authOptions)
+export const getSession = () => getServerSession(authOptions);
